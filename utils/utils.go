@@ -44,6 +44,7 @@ func AddLogToRedis( input_struct *types.LoggerMain ) {
 	json_marshal_result , json_marshal_error := json.Marshal( input_struct )
 	if json_marshal_error != nil { panic( json_marshal_error ) }
 	json_string := string( json_marshal_result )
+	fmt.Println( json_string )
 	redis.ListPushRight( "LOG.ALL" , json_string )
 	//var ctx = context.Background()
 	//redis.Redis.Do( ctx , "PUBLISH" , "LOG.ALL" , json_string )
