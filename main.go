@@ -15,7 +15,6 @@ func main() {
 	// fmt.Println( result )
 	// spotify.StartNextInCircularListOfMiscGenrePlaylists()
 	spotify.Start()
-
 	// test_data := types.TestStruct{
 	// 	Wadu: "wadu wadu wer234" ,
 	// 	Waduagain: []int{1,2,3,4} ,

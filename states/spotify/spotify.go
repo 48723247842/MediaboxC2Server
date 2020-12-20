@@ -110,7 +110,10 @@ func swap_current_and_previous_state_info( state_name string ) {
 	logger.Info( fmt.Sprintf( "swap_current_and_previous_state_info() === CURRENT_STATE === %s" , state_current )  )
 	redis.Set( "STATE.PREVIOUS" , state_current )
 	state_meta_data := build_state_meta_data( state_name )
-	logger.Info( fmt.Sprintf( "swap_current_and_previous_state_info() === NEW_STATE === %s" , state_meta_data )  )
+	logger.WithFields( logrus.Fields{
+		"state_current": sstate_current ,
+	}).Info("State == Spotify === StartNextInCircularListOfMiscGenrePlaylists() == STATUS UPDATE")
+	//logger.Info( fmt.Sprintf( "swap_current_and_previous_state_info() === NEW_STATE === %s" , state_meta_data )  )
 	redis.Set( "STATE.CURRENT" , state_meta_data )
 }
 
