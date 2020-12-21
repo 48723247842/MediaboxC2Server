@@ -109,7 +109,7 @@ func build_state_meta_data( state_name string ) ( json_string string ) {
 		Name: state_name ,
 		GenericType: "Spotify" ,
 		RestartOnFail: true ,
-		NowPlaying: types.NowPlaying{} ,
+		NowPlaying: types.NowPlayingMeta{} ,
 	}
 	json_marshal_result , json_marshal_error := json.Marshal( state_data )
 	if json_marshal_error != nil { panic( json_marshal_error ) }

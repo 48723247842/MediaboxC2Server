@@ -17,39 +17,38 @@ type LoggerMain struct {
 	Level string `json:level`
 }
 
-type NowPlaying struct {
+type TimeObject struct {
+	Seconds int64 `json:seconds`
+	TimeStamp string `json:time_stamp`
+}
+type TimesObject struct {
+	Duration TimeObject `json:duration`
+	CurrentPosition TimeObject `json:duration`
+	Remaining TimeObject `json:duration`
+}
+type StatsObject struct {
+	Skipped bool `json:skipped`
+	NumberOfTimesSkipped int `json:number_of_times_skipped`
+	Watched bool `json:watched`
+	NumberOfTimesWatched int `json:number_of_times_watched`
+	Completed bool `json:completed`
+	NumberOfTimesCompleted int `json:number_of_times_completed`
+}
+type NowPlayingMeta struct {
 	Title string `json:title`
 	Artist string `json:artist`
 	LocalFilePath string `json:local_file_path`
 	LocalFilePathB64 string `json:local_file_path_b64`
 	URL string `json:url`
-	Times struct {
-		Duration struct {
-			Seconds int64 `json:seconds`
-			Time int64 `json:seconds`
-		} `json:duration`
-		CurrentPosition struct {
-			Seconds int64 `json:seconds`
-			Time int64 `json:seconds`
-		} `json:current_position`
-		Remaining struct {
-			Seconds int64 `json:seconds`
-			Time int64 `json:seconds`
-		} `json:remaining`
-	} `json:times`
-	Stats struct {
-		Skipped bool `json:skipped`
-		NumberOfTimesSkipped int `json:number_of_times_skipped`
-		Watched bool `json:watched`
-		NumberOfTimesWatched int `json:number_of_times_watched`
-		Completed bool `json:completed`
-		NumberOfTimesCompleted int `json:number_of_times_completed`
-	} `json:stats`
+	ShowIndex string `json:show_index`
+	EpisodeIndex string `json:episode_index`
+	Times TimesObject `json:times`
+	Stats StatsObject `json:stats`
 }
 
 type StateMetaData struct {
 	Name string `json:name`
 	GenericType string `json:generic_type`
 	RestartOnFail bool `json:restart_on_fail`
-	NowPlaying NowPlaying `json:now_playing`
+	NowPlaying NowPlayingMeta `json:now_playing`
 }
