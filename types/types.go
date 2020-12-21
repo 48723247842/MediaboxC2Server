@@ -39,7 +39,7 @@ type NowPlaying struct {
 	} `json:times`
 	Stats struct {
 		Skipped bool `json:skipped`
-		NumberOfTimesSkipped bool `json:number_of_times_skipped`
+		NumberOfTimesSkipped int `json:number_of_times_skipped`
 		Watched bool `json:watched`
 		NumberOfTimesWatched int `json:number_of_times_watched`
 		Completed bool `json:completed`

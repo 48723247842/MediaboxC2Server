@@ -1,50 +1,21 @@
 package utils
 
 import (
-	log "github.com/sirupsen/logrus"
-	"encoding/json"
 	"fmt"
+	log "github.com/sirupsen/logrus"
 	"strings"
+	"encoding/json"
+	"encoding/base64"
 	types "c2server/types"
 	redis "github.com/0187773933/RedisManagerUtils/manager"
 )
 
-// Using Webdis Redis HTTP Server
-// https://github.com/nicolasff/webdis
-// sudo docker run -dit --restart='always' \
-// --name webdis --network host \
-// nicolas/webdis
-
-// And then this script as a makeshift "log viewer"
-// We can then watch all publishes to LOG.ALL in realtime on webbrowser
-// <script>
-// var previous_response_length = 0
-// xhr = new XMLHttpRequest()
-// xhr.open("GET", "http://100.112.11.51:7379/3/SUBSCRIBE/LOG.ALL", true);
-// xhr.onreadystatechange = checkData;
-// xhr.send(null);
-
-// function checkData() {
-// 	if(xhr.readyState == 3)  {
-// 		response = xhr.responseText;
-// 		chunk = response.slice(previous_response_length);
-// 		previous_response_length = response.length;
-// 		try{
-// 			const message = chunk.split( '{"SUBSCRIBE":["message","LOG.ALL",' )[1].split( "]}" )[0]
-// 			const parsed = JSON.parse( JSON.parse( message ) );
-// 			console.log( `${parsed.TimeStamp} === ${parsed.Msg}` );
-// 			console.log( parsed );
-// 		}catch(e){}
-// 	}
-// };
-// </script>
 func AddLogToRedis( input_struct *types.LoggerMain ) {
 	redis := redis.Manager{}
 	redis.Connect( "localhost:6379" , 3 , "" )
 	json_marshal_result , json_marshal_error := json.Marshal( input_struct )
 	if json_marshal_error != nil { panic( json_marshal_error ) }
 	json_string := string( json_marshal_result )
-	fmt.Println( json_string )
 	redis.ListPushRight( "LOG.ALL" , json_string )
 	//var ctx = context.Background()
 	//redis.Redis.Do( ctx , "PUBLISH" , "LOG.ALL" , json_string )
@@ -93,13 +64,6 @@ func ( hook *LoggerMainHook ) Levels() []log.Level {
 		log.DebugLevel,
 	}
 }
-// func ( hook *CallerHook ) caller( skip int ) string {
-// 	if _, file, line, ok := runtime.Caller(skip); ok {
-// 		return strings.Join([]string{filepath.Base(file), strconv.Itoa(line)}, ":")
-// 	}
-// 	// not sure what the convention should be here
-// 	return "???"
-// }
 
 func BuildLogger( author_name string ) ( logger *log.Entry ) {
 
@@ -117,5 +81,17 @@ func BuildLogger( author_name string ) ( logger *log.Entry ) {
 		"author": author_name ,
 	})
 
+	return
+}
+
+
+func Base64Encode( source string ) ( encoded string ) {
+	encoded = base64.StdEncoding.EncodeToString( []byte( source ) )
+	return
+}
+
+func Base64Decode( source string ) ( decoded string ) {
+	decoded_bytes , _ := base64.StdEncoding.DecodeString( source )
+	decoded = string( decoded_bytes[:] )
 	return
 }

@@ -2,6 +2,8 @@ github.com/0187773933/RedisManagerUtils v0.0.0-20201220214040-7ba22c031f65 h1:eP
 github.com/0187773933/RedisManagerUtils v0.0.0-20201220214040-7ba22c031f65/go.mod h1:yufQIVvXvJFZdnMRmwOh7amcJBuwvJdqkToYP4LJ1Cg=
 github.com/0187773933/SpotifyDBUSController v0.0.0-20201218010215-9e6089a042a1 h1:WkH6zAazt+bQdkI5eHIKAN1XowMymhnYzsyZxn6NnSU=
 github.com/0187773933/SpotifyDBUSController v0.0.0-20201218010215-9e6089a042a1/go.mod h1:VceRGzlwpp2JFPZ0n5SsqbPtWuAZcI2/ZEdbGk3JPCE=
+github.com/0187773933/VLCWrapper v0.0.0-20201221001601-76f19358d2ab h1:lfCuteEyVkatT3popJiSUu3eoAvXpGUj2rcFg9RPqQE=
+github.com/0187773933/VLCWrapper v0.0.0-20201221001601-76f19358d2ab/go.mod h1:ZHpNgdKdz5dP+mM6ivz0XT5M1vUCgblm6kNGLtE1kgI=
 github.com/cespare/xxhash/v2 v2.1.1 h1:6MnRN8NT7+YBpUIWxHtefFZOKTAPgGjpQSxqLNn0+qY=
 github.com/cespare/xxhash/v2 v2.1.1/go.mod h1:VGX0DQ3Q6kWi7AoAeZDth3/j3BFtOZR5XLFGgcrjCOs=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
