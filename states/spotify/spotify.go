@@ -98,7 +98,7 @@ func StartNextInCircularListOfMiscGenrePlaylists() ( result string ) {
 	spotify.Connect()
 	spotify.OpenURI( next_playlist_uri )
 	logger.WithFields( logrus.Fields{
-		"command": "spotify_status" ,
+		"command": "" ,
 		"spotify_status": spotify.Status ,
 	}).Info( "State === Spotify === StartNextInCircularListOfMiscGenrePlaylists() === Spotify Status" )
 	return
